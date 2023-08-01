@@ -1,0 +1,26 @@
+.cast-card {
+  flex: 0 0 auto;
+  width: 140px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 12px;
+  border: solid 1px rgba(128, 128, 128, 0.281);
+  //   align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  &-names {
+    padding: 4px 12px;
+  }
+  &-img {
+    width: 100%;
+    height: 175px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 11px;
+      border-top-right-radius: 11px;
+      object-fit: cover;
+    }
+  }
+}

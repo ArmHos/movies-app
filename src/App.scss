@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.movie-cards {
+  max-width: 1400px;
+  padding: 48px;
+  margin: auto;
+  margin-top: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+}
+.movie-page {
+  margin-top: 75px;
+}

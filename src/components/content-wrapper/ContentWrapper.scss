@@ -1,0 +1,52 @@
+.movie-search {
+  max-width: 1300px;
+  height: 350px;
+  display: flex;
+  // align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  margin: auto;
+  //   border: solid;
+  padding: 48px;
+  background-size: cover;
+  transition-duration: 0.5s;
+  transition-delay: 0.3s;
+  // transform-origin: map-keys($map: );
+  transition-timing-function: ease-in;
+  h1,
+  h2 {
+    color: #fff;
+  }
+  &-section {
+    margin-top: 58px;
+    width: 100%;
+    // flex-grow: 1;
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 12px;
+    // border: solid;
+    border-radius: 25px;
+    input {
+      width: 100%;
+      outline: none;
+      height: 30px;
+      border: none;
+      font-size: larger;
+    }
+    button {
+      height: 40px;
+      padding: 10px 16px;
+      border: 0;
+      background: linear-gradient(#1ad0b1, #05b8db);
+      border-radius: 30px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 520;
+      cursor: pointer;
+    }
+  }
+}
