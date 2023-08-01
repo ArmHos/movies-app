@@ -18,20 +18,24 @@ function Home({ setData, data, MovieCard }) {
       />
       <div className="movie-cards">
         {data.length !== 0 ? (
-          data.map((item) => {
-            return (
-              <Link to={`/about-movie/${item.id}`} key={item.id}>
-                <MovieCard
-                  imgUrl={item.poster_path}
-                  title={item.title}
-                  bcgImg={item.backdrop_path}
-                  id={item.id}
-                  overview={item.overview}
-                  vote={item.vote_average}
-                />
-              </Link>
-            );
-          })
+          data
+            .filter((item) => item.media_type !== "person")
+            .map((item) => {
+              return (
+                <Link to={`/${item.media_type}/${item.id}`} key={item.id}>
+                  <MovieCard
+                    imgUrl={item.poster_path}
+                    title={item.title}
+                    bcgImg={item.backdrop_path}
+                    id={item.id}
+                    overview={item.overview}
+                    vote={item.vote_average}
+                    name={item.name}
+                    original_name={item.original_name}
+                  />
+                </Link>
+              );
+            })
         ) : (
           <span>Oops try again!</span>
         )}

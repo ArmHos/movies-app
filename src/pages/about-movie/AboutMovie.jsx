@@ -7,18 +7,17 @@ import MovieOverview from "../../components/movie-overview/MovieOverview";
 import CastCard from "../../components/cast-card/CastCard";
 
 function AboutMovie() {
-  console.log("rerender");
-  const { id } = useParams();
+  const { id, media_type } = useParams();
   const [movieDB, setMovieDB] = useState();
   const [display, setDisplay] = useState(false);
   const [cast, setCast] = useState();
 
-  // console.log(movieDB);
-
   useEffect(() => {
     async function getData(id) {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}?&append_to_response=videos&api_key=7f13c265977c4a3391a98cdf2ef7d809`
+        `https://api.themoviedb.org/3/${
+          media_type === "movie" ? "movie" : "tv"
+        }/${id}?&append_to_response=videos&api_key=7f13c265977c4a3391a98cdf2ef7d809`
       );
       setMovieDB(data);
       console.log(data);
@@ -27,7 +26,9 @@ function AboutMovie() {
     async function getCast(id) {
       try {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=7f13c265977c4a3391a98cdf2ef7d809`
+          `https://api.themoviedb.org/3/${
+            media_type === "movie" ? "movie" : "tv"
+          }/${id}/credits?api_key=7f13c265977c4a3391a98cdf2ef7d809`
         );
         setCast(data);
       } catch (err) {
@@ -67,13 +68,17 @@ function AboutMovie() {
               // borderRadius: "12px",
             }}
           ></div>
-          <MovieOverview setDisplay={setDisplay} movieDB={movieDB} />
+          <MovieOverview
+            setDisplay={setDisplay}
+            movieDB={movieDB}
+            mediaType={media_type}
+          />
         </div>
       </div>
       <div className="about-cast">
         {console.log(cast && cast)}
         {cast &&
-          cast.cast[0].profile_path &&
+          cast.cast[0]?.profile_path &&
           cast.cast[0].name &&
           cast.cast[0].character && <h2>The Billed Cast</h2>}
         <div className="cast">
@@ -84,13 +89,13 @@ function AboutMovie() {
               })
               .map((item) => {
                 return (
-                  item.profile_path &&
+                  item?.profile_path &&
                   item.name &&
                   item.character && (
                     <CastCard
                       name={item.name && item.name}
                       character={item.character && item.character}
-                      imgPath={item.profile_path && item.profile_path}
+                      imgPath={item?.profile_path && item?.profile_path}
                       key={item.id}
                       id={item.id}
                     />

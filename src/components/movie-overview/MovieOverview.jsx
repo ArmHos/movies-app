@@ -2,17 +2,31 @@ import MovieRating from "../../components/movie-rating/MovieRating";
 import { BsPlayFill } from "react-icons/bs";
 import { PiDotOutlineFill } from "react-icons/pi";
 
-const MovieOverview = ({ setDisplay, movieDB }) => {
+const MovieOverview = ({ setDisplay, movieDB, mediaType }) => {
   return (
     <div className="about-movie-overview">
       <h3>
-        {movieDB &&
-          movieDB.title &&
-          `${movieDB.title} (${movieDB.release_date.split("-")[0]})`}
+        {mediaType === "movie"
+          ? movieDB &&
+            movieDB?.title &&
+            `${movieDB.title} (${movieDB.release_date?.split("-")[0]})`
+          : movieDB?.name && `${movieDB.name}`}
       </h3>
       <div className="about-movie-overview-realese">
         <span className="data">
-          {movieDB && movieDB.release_date.split("-").reverse().join("/")}
+          {
+            /* {movieDB && movieDB.release_date.split("-").reverse().join("/")} */
+            mediaType === "movie"
+              ? movieDB && movieDB.release_date.split("-").reverse().join("/")
+              : movieDB?.name &&
+                `${movieDB.first_air_date
+                  ?.split("-")
+                  .reverse()
+                  .join("/")} - ${movieDB.last_air_date
+                  ?.split("-")
+                  .reverse()
+                  .join("/")}`
+          }
         </span>
         <PiDotOutlineFill size={15} />
         <span className="genres">
@@ -26,15 +40,21 @@ const MovieOverview = ({ setDisplay, movieDB }) => {
               return item.name;
             })}
         </span>
-        <PiDotOutlineFill size={15} />
-        <div className="runtime">
-          {movieDB && movieDB.runtime && (
-            <>
-              <span>{Math.floor(movieDB.runtime / 60)}h </span>
-              <span>{Math.floor(movieDB.runtime % 60)}m</span>
-            </>
-          )}
-        </div>
+        {mediaType === "movie" ? (
+          <>
+            <PiDotOutlineFill size={15} />
+            <div className="runtime">
+              {movieDB && movieDB.runtime && (
+                <>
+                  <span>{Math.floor(movieDB.runtime / 60)}h </span>
+                  <span>{Math.floor(movieDB.runtime % 60)}m</span>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <MovieRating vote={movieDB && movieDB.vote_average} s={25} />
       <span className="about-movie-overview-tagline">

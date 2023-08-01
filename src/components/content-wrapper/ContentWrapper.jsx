@@ -20,20 +20,24 @@ const ContentWrapper = ({ API_KEY, inputRef, setData }) => {
       clearInterval(id);
     };
   });
-  // console.log(img);
+
   return (
     <div className="movie-search" style={{ backgroundImage: `url(${img})` }}>
       <h1>Welcome.</h1>
       <h2>Millions of movies, TV shows and people to discover. Explore now.</h2>
       <div className="movie-search-section">
-        <input type="text" ref={inputRef} />
+        <input
+          type="text"
+          ref={inputRef}
+          placeholder="Search for a movie, tv show..."
+        />
         <button
           onClick={async () => {
             let value = inputRef.current.value.trim();
             if (value) {
               try {
                 const resp = await fetch(
-                  `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${value}`
+                  `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${value}`
                 );
                 let movieData = await resp.json();
                 console.log(movieData.results);

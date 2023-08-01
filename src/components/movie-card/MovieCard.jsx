@@ -1,6 +1,15 @@
 import "./MovieCard.scss";
 import MovieRating from "../movie-rating/MovieRating";
-function MovieCard({ imgUrl, title, name, bcgImg, id, overview, vote }) {
+function MovieCard({
+  imgUrl,
+  title,
+  original_name,
+  bcgImg,
+  id,
+  overview,
+  name,
+  vote,
+}) {
   return (
     <div
       className="movie-card"
