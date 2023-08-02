@@ -1,4 +1,4 @@
-import MovieRating from "../../components/movie-rating/MovieRating";
+import MovieRating from "../../movie-rating/MovieRating";
 import { BsPlayFill } from "react-icons/bs";
 import { PiDotOutlineFill } from "react-icons/pi";
 

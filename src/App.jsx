@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import MovieCard from "./components/movie-card/MovieCard";
-import {
-  Route,
-  Routes,
-  Link,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import AboutMovie from "./pages/about-movie/AboutMovie";
-import Home from "./pages/home/Home";
+import MovieCard from "./components/home/movie-card/MovieCard";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import AboutPerson from "./components/about-person/AboutPerson";
+import AboutPersonPage from "./pages/AboutPersonPage";
 
 function ScrollToTop() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,9 +43,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home setData={setData} data={data} MovieCard={MovieCard} />}
+          element={
+            <HomePage setData={setData} data={data} MovieCard={MovieCard} />
+          }
         />
-        <Route path="/:media_type/:id" element={<AboutMovie />} />
+        <Route path="/:media_type/:id" element={<AboutPage />} />
+        <Route path="/person/:id" element={<AboutPersonPage />} />
       </Routes>
       <Footer />
     </div>

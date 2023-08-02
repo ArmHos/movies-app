@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./AboutMovie.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import MovieTrailer from "../../components/movie-trailer/MovieTrailer";
-import MovieOverview from "../../components/movie-overview/MovieOverview";
-import CastCard from "../../components/cast-card/CastCard";
+import MovieTrailer from "./movie-trailer/MovieTrailer";
+import MovieOverview from "./movie-overview/MovieOverview";
+import CastCard from "./cast-card/CastCard";
 
 function AboutMovie() {
   const { id, media_type } = useParams();

@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import ContentWrapper from "../../components/content-wrapper/ContentWrapper";
-// import Footer from "../../components/footer/Footer";
-// import Header from "../../components/header/Header";
+import ContentWrapper from "./content-wrapper/ContentWrapper";
 
 function Home({ setData, data, MovieCard }) {
   const API_KEY = `7f13c265977c4a3391a98cdf2ef7d809`;

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import CONFIG from "../../config";
+import CONFIG from "../../../config";
 import "./ContentWrapper.scss";
 
 const dataImg = CONFIG.bcgImages;

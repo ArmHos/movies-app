@@ -1,5 +1,5 @@
 import "./MovieCard.scss";
-import MovieRating from "../movie-rating/MovieRating";
+import MovieRating from "../../movie-rating/MovieRating";
 function MovieCard({
   imgUrl,
   title,
@@ -36,20 +36,6 @@ function MovieCard({
     </div>
   );
 }
-
-// function cutTitle(title) {
-//   let arrOfLetters = title.split("");
-//   let res = "";
-//   if (arrOfLetters.length < 15) {
-//     res = arrOfLetters.join("");
-//   } else {
-//     for (let i = 0; i < 15; i++) {
-//       res += arrOfLetters[i];
-//     }
-//     res += "...";
-//   }
-//   return res;
-// }
 
 function cutTitle(text) {
   if (!text) return "";
