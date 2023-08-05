@@ -21,3 +21,15 @@ a {
 .movie-page {
   margin-top: 75px;
 }
+.pages {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  button {
+    min-width: 20px;
+    height: 20px;
+  }
+}

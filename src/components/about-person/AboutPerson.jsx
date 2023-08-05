@@ -52,6 +52,7 @@ const AboutPerson = () => {
             <span>
               <h5>Birthday</h5>
               {data &&
+                data.birthday &&
                 `${data.birthday} (${
                   year - data.birthday.split("-")[0]
                 } years old)`}
@@ -59,18 +60,21 @@ const AboutPerson = () => {
           </section>
           <section>
             <h5>Place of Birth</h5>
-            <span>{data && data.place_of_birth}</span>
+            <span>{data && data.place_of_birth && data.place_of_birth}</span>
           </section>
         </div>
       </div>
       <div className="about-person-biography">
-        <h3>{data && data.name}</h3>
+        <h3>{data && data.name && data.name}</h3>
         <h5>Biography</h5>
         <div>
-          {data &&
+          {data && data.biography.includes("\n\n") ? (
             data.biography.split("\n\n").map((item, i) => {
               return <p key={i}>{item}</p>;
-            })}
+            })
+          ) : (
+            <p>{data && data.biography}</p>
+          )}
         </div>
         {data && console.log(data.biography.split("\n\n"))}
       </div>

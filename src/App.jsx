@@ -21,15 +21,16 @@ function ScrollToTop() {
 
 function App() {
   const [data, setData] = useState([]);
+  const tradingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=7f13c265977c4a3391a98cdf2ef7d809`;
   useEffect(() => {
     (async function () {
       try {
-        const resp = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/day?api_key=7f13c265977c4a3391a98cdf2ef7d809`
-        );
+        const resp = await fetch(tradingUrl);
         const data = await resp.json();
+        console.log(data);
         setData(data.results);
         localStorage.setItem("trading", JSON.stringify(data.results));
+        localStorage.setItem("currentDataUrl", tradingUrl);
       } catch (err) {
         throw new Error(err);
       }
@@ -39,12 +40,17 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
-      <Header setData={setData} />
+      <Header setData={setData} tradingUrl={tradingUrl} />
       <Routes>
         <Route
           path="/"
           element={
-            <HomePage setData={setData} data={data} MovieCard={MovieCard} />
+            <HomePage
+              setData={setData}
+              data={data}
+              MovieCard={MovieCard}
+              tradingUrl={tradingUrl}
+            />
           }
         />
         <Route path="/:media_type/:id" element={<AboutPage />} />

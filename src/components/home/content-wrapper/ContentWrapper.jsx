@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CONFIG from "../../../config";
 import "./ContentWrapper.scss";
 
@@ -32,24 +32,8 @@ const ContentWrapper = ({ API_KEY, inputRef, setData }) => {
           placeholder="Search for a movie, tv show..."
         />
         <button
-          onClick={async () => {
-            let value = inputRef.current.value.trim();
-            if (value) {
-              try {
-                const resp = await fetch(
-                  `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${value}`
-                );
-                let movieData = await resp.json();
-                console.log(movieData.results);
-                let res = movieData.results.filter(
-                  (item) => item.poster_path !== null
-                );
-                setData(res);
-              } catch (err) {
-                throw new Error(err);
-              }
-            }
-            inputRef.current.value = "";
+          onClick={() => {
+            handleInput(inputRef, API_KEY, setData);
           }}
         >
           Search
@@ -59,4 +43,21 @@ const ContentWrapper = ({ API_KEY, inputRef, setData }) => {
   );
 };
 
+async function handleInput(inputRef, API_KEY, setData) {
+  let value = inputRef.current.value.trim();
+  if (value) {
+    try {
+      const resp = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${value}`
+      );
+      let movieData = await resp.json();
+      console.log(movieData.results);
+      let res = movieData.results.filter((item) => item.poster_path !== null);
+      setData(res);
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+  inputRef.current.value = "";
+}
 export default ContentWrapper;
